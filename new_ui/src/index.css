@@ -21,11 +21,11 @@
 :root {
   --bg: #050505;
   --card-bg: rgba(15, 15, 18, 0.8);
-  --border: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.22);
   --text: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.4);
   --glass-bg: rgba(15, 15, 18, 0.8);
-  --btn-bg: rgba(255, 255, 255, 0.05);
+  --btn-bg: rgba(255, 255, 255, 0.06);
   --btn-text: rgba(255, 255, 255, 0.4);
   --btn-primary-bg: #ffffff;
   --btn-primary-text: #000000;
@@ -87,7 +87,8 @@ body {
 .glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   color: var(--text);
 }
 

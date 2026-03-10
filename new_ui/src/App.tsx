@@ -356,39 +356,39 @@ export default function App() {
                 <button
                   onClick={() => setMode('auto')}
                   className={cn(
-                    "p-6 rounded-2xl border transition-all flex flex-col items-center gap-3",
+                    "p-5 rounded-2xl border transition-all flex flex-col items-center gap-3",
                     mode === 'auto'
                       ? "bg-neon-blue/10 border-neon-blue shadow-[0_0_20px_rgba(0,210,255,0.2)]"
                       : "bg-btn-bg border-border-subtle hover:bg-border-subtle"
                   )}
                 >
-                  <Brain className={cn("w-8 h-8", mode === 'auto' ? "text-neon-blue" : "text-muted")} />
+                  <Brain className={cn("w-9 h-9", mode === 'auto' ? "text-neon-blue" : "text-muted")} />
                   <div className="text-center">
                     <p className="font-bold text-sm text-foreground">{t.auto}</p>
-                    <p className="text-[10px] text-muted uppercase tracking-wider">{t.autoDesc}</p>
+                    <p className="text-xs text-muted uppercase tracking-wider mt-0.5">{t.autoDesc}</p>
                   </div>
                 </button>
 
                 <button
                   onClick={() => setMode('manual')}
                   className={cn(
-                    "p-6 rounded-2xl border transition-all flex flex-col items-center gap-3",
+                    "p-5 rounded-2xl border transition-all flex flex-col items-center gap-3",
                     mode === 'manual'
                       ? "bg-neon-orange/10 border-neon-orange shadow-[0_0_20px_rgba(255,157,0,0.2)]"
                       : "bg-btn-bg border-border-subtle hover:bg-border-subtle"
                   )}
                 >
-                  <Pipette className={cn("w-8 h-8", mode === 'manual' ? "text-neon-orange" : "text-muted")} />
+                  <Pipette className={cn("w-9 h-9", mode === 'manual' ? "text-neon-orange" : "text-muted")} />
                   <div className="text-center">
                     <p className="font-bold text-sm text-foreground">{t.manual}</p>
-                    <p className="text-[10px] text-muted uppercase tracking-wider">{t.manualDesc}</p>
+                    <p className="text-xs text-muted uppercase tracking-wider mt-0.5">{t.manualDesc}</p>
                   </div>
                 </button>
               </div>
             )}
 
             <div className="glass-card rounded-3xl p-6 flex flex-col gap-6 flex-1">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted">{t.actions}</h3>
+              <h3 className="text-base font-bold uppercase tracking-widest text-muted">{t.actions}</h3>
 
               <div className="flex flex-col gap-3 flex-1">
                 {mode === 'auto' ? (
@@ -462,21 +462,21 @@ export default function App() {
           {/* Stats/Info */}
           <div className="glass-card rounded-3xl p-6 flex flex-col gap-4">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase tracking-wider text-muted">{t.status}</span>
-              <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-500">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted">{t.status}</span>
+              <span className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 {t.ready}
               </span>
             </div>
             <div className="h-[1px] bg-border-subtle" />
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-muted mb-1">{t.engine}</p>
-                <p className="text-xs font-bold text-foreground">InSPyReNet Base</p>
+                <p className="text-xs uppercase tracking-wider text-muted mb-1">{t.engine}</p>
+                <p className="text-sm font-bold text-foreground">InSPyReNet Base</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-muted mb-1">{t.latency}</p>
-                <p className="text-xs font-bold text-foreground">~1.2s</p>
+                <p className="text-xs uppercase tracking-wider text-muted mb-1">{t.latency}</p>
+                <p className="text-sm font-bold text-foreground">~1.2s</p>
               </div>
             </div>
           </div>

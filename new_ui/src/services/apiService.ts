@@ -1,5 +1,8 @@
 export async function removeBackgroundAI(base64Image: string): Promise<string | null> {
   try {
+    console.log("ALL ENV VARS:", import.meta.env);
+    console.log("VITE_API_URL IS:", import.meta.env.VITE_API_URL);
+
     let API_BASE = import.meta.env.VITE_API_URL || '';
     if (API_BASE && API_BASE.endsWith('/')) {
       API_BASE = API_BASE.slice(0, -1);

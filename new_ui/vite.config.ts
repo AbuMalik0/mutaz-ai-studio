@@ -9,10 +9,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      // قراءة VITE_API_URL من بيئة Vercel (process.env) وليس من ملف .env المحلي
-      'import.meta.env.VITE_API_URL': JSON.stringify(
-        process.env.VITE_API_URL || env.VITE_API_URL || ''
-      ),
+      // VITE_* متغيرات يتم تحميلها تلقائياً من Vercel بواسطة Vite
     },
     resolve: {
       alias: {

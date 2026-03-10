@@ -265,9 +265,9 @@ export default function App() {
               "relative flex-1 rounded-3xl border-2 transition-all duration-500 overflow-hidden min-h-[400px] flex items-center justify-center",
               !image ? "border-dashed" : "border-solid",
               !image
-                ? (theme === 'light' ? "border-slate-200 bg-white" : "border-white/10 bg-white/5 hover:bg-white/10")
+                ? (theme === 'light' ? "border-slate-300 bg-white" : "border-neon-blue/40 bg-neon-blue/5 hover:bg-neon-blue/10 hover:border-neon-blue/60")
                 : (theme === 'light' ? "border-transparent bg-slate-200" : "border-border-subtle bg-btn-bg"),
-              isDragActive && "border-neon-blue bg-neon-blue/5"
+              isDragActive && "border-neon-blue bg-neon-blue/10"
             )}
             {...(!image ? getRootProps() : {})}
           >

@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00d2ff;
+  --color-neon-orange: #ff9d00;
+  --color-neon-purple: #b300ff;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-muted: var(--text-muted);
+  --color-border-subtle: var(--border);
+  --color-card: var(--card-bg);
+  --color-glass: var(--glass-bg);
+  --color-btn-bg: var(--btn-bg);
+  --color-btn-text: var(--btn-text);
+  --color-btn-primary-bg: var(--btn-primary-bg);
+  --color-btn-primary-text: var(--btn-primary-text);
+}
+
+:root {
+  --bg: #050505;
+  --card-bg: rgba(15, 15, 18, 0.8);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(15, 15, 18, 0.8);
+  --btn-bg: rgba(255, 255, 255, 0.05);
+  --btn-text: rgba(255, 255, 255, 0.4);
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #000000;
+}
+
+[data-theme='light'] {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --text: #0f172a;
+  --text-muted: rgba(15, 23, 42, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --btn-bg: rgba(0, 0, 0, 0.05);
+  --btn-text: rgba(15, 23, 42, 0.5);
+  --btn-primary-bg: #0f172a;
+  --btn-primary-text: #ffffff;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Circuit pattern background */
+.circuit-bg {
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(0, 210, 255, 0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.circuit-lines {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.1;
+  background-image: linear-gradient(rgba(0, 210, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 210, 255, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 157, 0, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(179, 0, 255, 0.3);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}

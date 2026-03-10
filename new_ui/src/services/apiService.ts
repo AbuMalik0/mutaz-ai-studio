@@ -1,6 +1,12 @@
 export async function removeBackgroundAI(base64Image: string): Promise<string | null> {
   try {
-    const API_BASE = import.meta.env.VITE_API_URL || '';
+    let API_BASE = import.meta.env.VITE_API_URL || '';
+    if (API_BASE && API_BASE.endsWith('/')) {
+      API_BASE = API_BASE.slice(0, -1);
+    }
+
+    console.log("Sending request to:", `${API_BASE}/api/remove-auto`);
+
     const response = await fetch(`${API_BASE}/api/remove-auto`, {
       method: 'POST',
       headers: {
@@ -10,14 +16,17 @@ export async function removeBackgroundAI(base64Image: string): Promise<string | 
     });
 
     if (!response.ok) {
-      console.error("Local BG Removal Error:", response.statusText);
+      const errText = await response.text();
+      console.error("BG Removal API Error Status:", response.status, "Text:", errText);
+      alert(`API Error: ${response.status} - ${errText.substring(0, 100)}`);
       return null;
     }
 
     const data = await response.json();
     return data.result;
   } catch (error) {
-    console.error("Local BG Removal Error:", error);
+    console.error("BG Removal Network Error:", error);
+    alert(`Network Error: Cannot reach AI Server. Check console for details.`);
     return null;
   }
 }

@@ -5,7 +5,7 @@
   --color-neon-orange: #ff9d00;
   --color-neon-purple: #b300ff;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  
+
   --color-background: var(--bg);
   --color-foreground: var(--text);
   --color-muted: var(--text-muted);
@@ -21,10 +21,10 @@
 :root {
   --bg: #050505;
   --card-bg: rgba(15, 15, 18, 0.8);
-  --border: rgba(255, 255, 255, 0.22);
+  --border: rgba(255, 255, 255, 0.35);
   --text: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.4);
-  --glass-bg: rgba(15, 15, 18, 0.8);
+  --glass-bg: rgba(20, 20, 26, 0.9);
   --btn-bg: rgba(255, 255, 255, 0.06);
   --btn-text: rgba(255, 255, 255, 0.4);
   --btn-primary-bg: #ffffff;
@@ -54,7 +54,7 @@ body {
 
 /* Circuit pattern background */
 .circuit-bg {
-  background-image: 
+  background-image:
     radial-gradient(circle at 2px 2px, rgba(0, 210, 255, 0.05) 1px, transparent 0);
   background-size: 40px 40px;
   position: fixed;
@@ -86,15 +86,24 @@ body {
 
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  border: 1.5px solid var(--border);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(0, 210, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   color: var(--text);
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .animate-pulse-glow {

@@ -37,9 +37,21 @@ class BgRemover:
         import numpy as np
         from PIL import Image
         
-        # فك تشفير الصورة
-        image_data = base64.b64decode(image_b64.split(",")[1] if "," in image_b64 else image_b64)
-        image = Image.open(io.BytesIO(image_data))
+        # فك تشفير الصورة مع معالجة الأخطاء المحتملة في التنسيق
+        if "," in image_b64:
+            image_b64 = image_b64.split(",")[1]
+        
+        # التأكد من صحة طول السلسلة (مضاعفات 4) لمنع خطأ فك التشفير
+        image_b64 = image_b64.strip()
+        padding = len(image_b64) % 4
+        if padding > 0:
+            image_b64 += "=" * (4 - padding)
+            
+        try:
+            image_data = base64.b64decode(image_b64)
+            image = Image.open(io.BytesIO(image_data))
+        except Exception as e:
+            raise ValueError(f"فشل في فك تشفير الصورة: {str(e)}")
         
         # استخراج القناع من المودل
         raw_mask_pil = self.remover.process(image, type='map').convert("L")
@@ -66,8 +78,20 @@ class BgRemover:
         import numpy as np
         from PIL import Image
         
-        image_data = base64.b64decode(image_b64.split(",")[1] if "," in image_b64 else image_b64)
-        image = Image.open(io.BytesIO(image_data))
+        # فك تشفير الصورة مع معالجة الأخطاء
+        if "," in image_b64:
+            image_b64 = image_b64.split(",")[1]
+            
+        image_b64 = image_b64.strip()
+        padding = len(image_b64) % 4
+        if padding > 0:
+            image_b64 += "=" * (4 - padding)
+            
+        try:
+            image_data = base64.b64decode(image_b64)
+            image = Image.open(io.BytesIO(image_data))
+        except Exception as e:
+            raise ValueError(f"فشل في فك تشفير الصورة: {str(e)}")
         
         img_rgba = image.convert("RGBA")
         img_array = np.array(img_rgba)

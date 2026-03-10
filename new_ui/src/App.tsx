@@ -36,6 +36,8 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [language, setLanguage] = useState<'en' | 'ar'>('en');
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [lastProcessingTime, setLastProcessingTime] = useState<string>('~2 min');
+  const [lastRequestTimestamp, setLastRequestTimestamp] = useState<number | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -62,7 +64,11 @@ export default function App() {
   const handleAutoRemove = async () => {
     if (!image) return;
     setIsProcessing(true);
+    const t0 = Date.now();
     const result = await removeBackgroundAI(image);
+    const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+    setLastProcessingTime(`${elapsed}s`);
+    setLastRequestTimestamp(Date.now());
     if (result) {
       setImage(result);
     } else {
@@ -73,16 +79,17 @@ export default function App() {
 
   const handleManualRemove = async () => {
     if (pickedColors.length === 0 || !originalImage) return;
-
     setIsProcessing(true);
-
+    const t0 = Date.now();
     const result = await removeBackgroundManual(originalImage, pickedColors, tolerance);
+    const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+    setLastProcessingTime(`${elapsed}s`);
+    setLastRequestTimestamp(Date.now());
     if (result) {
       setImage(result);
     } else {
       alert(language === 'en' ? "Manual removal failed. Please try again." : "فشل عملية الحذف اليدوي. يرجى المحاولة مرة أخرى.");
     }
-
     setIsProcessing(false);
   };
 
@@ -170,7 +177,7 @@ export default function App() {
       status: "Status",
       ready: "SYSTEM READY",
       engine: "Engine",
-      latency: "Latency",
+      latency: "Est. Time",
       settings: "Settings",
       language: "Language",
       theme: "Theme",
@@ -199,7 +206,7 @@ export default function App() {
       status: "الحالة",
       ready: "النظام جاهز",
       engine: "المحرك",
-      latency: "الاستجابة",
+      latency: "الوقت المتوقع",
       settings: "الإعدادات",
       language: "اللغة",
       theme: "المظهر",
@@ -476,7 +483,11 @@ export default function App() {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-wider text-muted mb-1">{t.latency}</p>
-                <p className="text-sm font-bold text-foreground">~1.2s</p>
+                <p className="text-sm font-bold text-foreground">
+                  {lastRequestTimestamp && (Date.now() - lastRequestTimestamp) < 5 * 60 * 1000
+                    ? lastProcessingTime
+                    : '~2 min'}
+                </p>
               </div>
             </div>
           </div>
